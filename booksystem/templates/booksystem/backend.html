@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Backend - Book Billing System | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/backend.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+    {% csrf_token %}
+    <h1 id="topic-book-system">Book Billing System | Backend</h1>
+    <!-- ========================================================== -->
+    <!-- Start of Create-Item Section ================ -->
+    <!-- ========================================================== -->
+    <section id="create-item">
+        <div id="create-item-wrapper">
+            <select>
+                <option value="default" selected>Select a Value</option>
+                <option value="book" onclick="spawnBookCreateInput()">Book</option>
+                <option value="author" onclick="spawnAuthorCreateInput()">Author</option>
+                <option value="publisher" onclick="spawnPublisherCreateInput()">Publisher</option>
+                <option value="book-type" onclick="spawnBookTypeCreateInput()">Book Type</option>
+                <option value="user" onclick="spawnUserCreateInput()">User</option>
+            </select> 
+            <a href="#" onclick="addAItemToDB();" id="" class="waves-effect waves-dark">Add</a>
+        </div>
+        <div id="create-item-spawn-space">
+        </div>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Create-Item Section ================ -->
+    <!-- ========================================================== -->
+
+    <!-- ========================================================== -->
+    <!-- Start of More Options Section ================ -->
+    <!-- ========================================================== -->
+    <section id="more-options">
+        <a href="#" class="add-top-left-radius waves-effect waves-dark" onclick="more_option_dashboard()">Dashboard</a>
+        <a href="#" class="waves-effect waves-dark" onclick="more_option_frontend()">Frontend</a>
+        <a href="#" class="add-top-right-radius waves-effect waves-dark" onclick="more_option_clear()">Clear</a>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of More Options Section ================ -->
+    <!-- ========================================================== -->
+
+    <!--Wave Effects -->
+    <script src="{% static 'booksystem/js/calculator.js' %}"></script>
+    <!-- Custom Javascript -->
+    <script src="{% static 'booksystem/js/backend.js' %}"></script>
+    <!-- Jquery -->
+    <script src="{% static 'booksystem/js/jquery-3.4.1.js' %}"></script>
+    <!-- Notification -->
+    <script src="{% static 'booksystem/js/notification.js' %}"></script>
+    <!-- ========================================================== -->
+    <!-- Javascript codes that need a loving -->
+    <!-- ========================================================== -->
+    <script>
+        /* The Saving point of current book system primary key */
+        let current_book_system_pk = {{ current_book_system.pk }};
+        /* ================================= */
+
+        
+        let authorLocalList = [
+            {% for author in author_list %}
+                "{{ author.name }}",
+            {% endfor %}
+        ];
+        let bookTypeLocalList = [
+            {% for book_type in book_type_list %}
+                "{{ book_type.title }}",
+            {% endfor %}
+        ];
+        let bookPublisherLocalList = [
+            {% for book_publisher in publisher_list %}
+                "{{ book_publisher.name }}",
+            {% endfor %}
+        ];
+
+        function spawnBookCreateInput(){
+            createItemSpawnSpace.innerHTML = `
+                <input id="spawned-book-name-input" type="text" placeholder="Book Name">
+                <input id="spawned-book-price-input" type="number" placeholder="Book Price">
+                <input id="spawned-book-code-input" type="number" placeholder="Item Code">
+                <input id="spawned-book-stock-input" type="number" placeholder="Stock">
+                <select id="spawned-book-publisher-input" >
+                    <option value="default" selected>Book Publisher</option>
+                    ${bookPublisherLocalList.map((item) => {
+                        return `<option value="${item.toLowerCase()}">${item}</option>`
+                    })}
+                </select> 
+                <select id="spawned-book-type-input" >
+                    <option value="default" selected>Book Type</option>
+                    ${bookTypeLocalList.map((item) => {
+                        return `<option value="${item.toLowerCase()}">${item}</option>`
+                    })}
+                </select> 
+                <select id="spawned-book-author-input" >
+                    <option value="default" selected>Author</option>
+                    ${authorLocalList.map((item) => {
+                        return `<option value="${item.toLowerCase()}">${item}</option>`
+                    })}
+                </select> 
+            `
+        }
+    </script>
+    <!-- ========================================================== -->
+    <!-- End Javascript codes that need a loving -->
+    <!-- ========================================================== -->
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>

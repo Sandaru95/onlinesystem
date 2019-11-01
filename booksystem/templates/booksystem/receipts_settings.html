@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Receipt Settings | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/receipts_settings.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- User Check -->
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+    <a href="#" class="waves-effect waves-dark" id="close-btn" onclick="closeReceiptSettings()">X</a>
+    <!-- ========================================================== -->
+    <!-- Start of Receipts Settings Section ================ -->
+    <!-- ========================================================== -->
+    <section id="receipts-settings">
+        <form>
+            <input type="text" id="publisher-name" placeholder="Publisher Name" value="{{ current_book_system.receipt_publisher_name }}">
+            <input type="text" id="publisher-address" placeholder="Publisher Address" value="{{ current_book_system.receipt_publisher_address }}">
+            <input type="text" id="last-greenting-text" placeholder="Last Greeting Text" value="{{ current_book_system.receipt_greenting_text }}">
+            <br>
+            <br>
+            <select name="date-select" id="date-select">
+                {% if current_book_system.receipt_date == True %}
+                <option value="True">Date: Enabled</option>
+                <option value="False">Date: Disable</option>
+                {% else %}
+                <option value="False">Date: Disable</option>
+                <option value="True">Date: Enabled</option>
+                {% endif %}
+            </select>
+            <select name="no-items-select" id="no-items-select">
+                {% if current_book_system.receipt_no_items == True %}
+                <option value="True">No Items: Enabled</option>
+                <option value="False">No Items: Disable</option>
+                {% else %}
+                <option value="False">No Items: Disable</option>
+                <option value="True">No Items: Enabled</option>
+                {% endif %}
+            </select>
+            <select name="subtotal-select" id="subtotal-select">
+                {% if current_book_system.receipt_subtotal == True %}
+                <option value="True">SubTotal: Enabled</option>
+                <option value="False">SubTotal: Disable</option>
+                {% else %}
+                <option value="False">SubTotal: Disable</option>
+                <option value="True">SubTotal: Enabled</option>
+                {% endif %}
+            </select>
+            <select name="total-select" id="total-select">
+                {% if current_book_system.receipt_total == True %}
+                <option value="True">Total: Enabled</option>
+                <option value="False">Total: Disable</option>
+                {% else %}
+                <option value="False">Total: Disable</option>
+                <option value="True">Total: Enabled</option>
+                {% endif %}
+            </select>
+        </form>
+        <!-- Form Submission Btn WITH CSRF -->
+        {% csrf_token %}
+        <a href="#" class="waves-effect waves-dark" id="update-btn" onclick="updateReceiptSettings()">Update</a>
+        <!-- End of Form Submission Button -->
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Receipt Settings Section ================ -->
+    <!-- ========================================================== -->
+    <!-- Jquery -->
+    <script src="{% static 'booksystem/js/jquery-3.4.1.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'booksystem/js/calculator.js' %}"></script>
+    <!-- Custom Javascript -->
+    <script src="{% static 'booksystem/js/receipts_settings.js' %}"></script>
+    <script>
+        /* The Saving point of current book system primary key */
+        let current_book_system_pk = {{ current_book_system.pk }};
+        /* =================================   */
+    </script>
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>

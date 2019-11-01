@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Home | System Factory</title>
+    {% load static %}
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/templatemo-art-factory.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/owl-carousel.css' %}">
+
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">System Factory</a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="#about">About</a></li>
+                            <li class="scroll-to-section"><a href="#services">Services</a></li>
+                            <li class="scroll-to-section"><a href="#frequently-question">Frequently Questions</a></li>
+                            <li class="scroll-to-section"><a href="#contact-us">Contact Us</a></li>
+                            <li class="scroll-to-section"><a href="{% url 'accounts:login' %}">Login</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <h1>System Factory is free <strong>for YOU</strong></h1>
+                        <p>Our service is to provide billing systems for restuarants, shops, bookshops, librarys, markets and etc. With our service You can connect to the world largest billing system network online and create your own billing system.</p>
+                        <a href="{% url 'accounts:signup' %}" class="main-button-slider">Get Started</a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <img src="{% static 'home/images/welcome-img.gif' %}" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'home/images/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
+                    <div class="left-heading">
+                        <h5>Create Unlimited Number of Systems That Will Suits To Any Bussiness</h5>
+                    </div>
+                    <div class="left-text">
+						<p>With our platform you are not limited to just one system. You will have the ability to create any amount of systems which will suits to any bussiness.  <br><br>
+						Also You will have a very functional dashboard where you control every behaviour of your systems and your account.
+                        </p>
+                        <a href="{% url 'accounts:signup' %}" class="main-button">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="about2">
+        <div class="container">
+            <div class="row">
+                <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h5>Why We are the Largest and Best Platform?</h5>
+                    </div>
+                    <p>We are the most largest and the best platform for getting your billing and POS systems ready. The reasons behind that are,</p>
+                    <ul>
+                        <li>
+                            <img src="{% static 'home/images/about-icon-01.png' %}" height='55px'>
+                            <div class="text">
+                                <h6>Best Service for Free</h6>
+                                <p>Our Platform provides the best systems for free.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="{% static 'home/images/about-icon-02.png' %}" height='55px'>
+                            <div class="text">
+                                <h6>The Largest Community of Users</h6>
+                                <p>A large community of users around the world have gathered together to support us for our service.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="{% static 'home/images/about-icon-03.png' %}" height='55px'>
+                            <div class="text">
+                                <h6>Alerts for Almost Everything</h6>
+                                <p>We have provide a alert system to notify the user about everything happening around the user account</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'home/images/right-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+
+    <!-- ***** Features Small Start ***** -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="owl-carousel owl-theme">
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-01.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">It's All Free</h5>
+                        <p>We Provide all of our services for free of charge. We are a team who are more focus on bringing value to the people.</p>
+                        <a href="#" class="main-button">Read More</a>
+                    </div>
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-02.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">Large Community</h5>
+                        <p>A large community of users around the world have gathered together to support us for our service.  </p>
+                        <a href="#" class="main-button">Discover More</a>
+                    </div>
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-03.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">Alerts for Almost Everything</h5>
+                        <p>We have provide a alert system to notify the user about everything happening around thier accounts.</p>
+                        <a href="#" class="main-button">More Detail</a>
+                    </div>
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-04.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">Everything on Cloud</h5>
+                        <p>You don't have to think about loosing data about sales, stocks and transactions because all of your data are on cloud.</p>
+                        <a href="#" class="main-button">Read More</a>
+                    </div>
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-05.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">Visual Graphs</h5>
+                        <p>We provide you a panel for seeing the improvement of your bussiness with visual graphs. </p>
+                        <a href="#" class="main-button">Discover</a>
+                    </div>
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-06.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">You're Safe</h5>
+                        <p>Our platform has make sure that your data are safe. Our platform uses methods like encryptions to make sure your data are safe.</p>
+                        <a href="#" class="main-button">Detail</a>
+                    </div>
+                    <div class="item service-item">
+                        <div class="icon">
+                            <i><img src="{% static 'home/images/service-icon-07.png' %}" alt=""></i>
+                        </div>
+                        <h5 class="service-title">Anytime Technical Support</h5>
+                        <p>Our Platform has anytime technical support section to get support for any technical related question instantly.</p>
+                        <a href="#" class="main-button">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Small End ***** -->
+
+
+    <!-- ***** Frequently Question Start ***** -->
+    <section class="section" id="frequently-question">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="section-heading">
+                        <p>We are the best and largest platform for getting your billing or POS system ready in seconds. As users of our platform you may have some questions to ask. Below are some frequently asked questions</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <div class="left-text col-lg-6 col-md-6 col-sm-12">
+                    <h5>Our mission as a world trusted online service providing company</h5>
+                    <div class="accordion-text">
+                        <p>Our mission is to help the world automate and speed up thier work and provide our best service through this platform.</p>
+                        <span>Email: <a href="#">sandarubro95@gmail.com</a><br></span>
+                        <a href="#contact-us" class="main-button">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="accordions is-first-expanded">
+                        <article class="accordion">
+                            <div class="accordion-head">
+                                <span>Is this service is completely free of charge?</span>
+                                <span class="icon">
+                                    <i class="icon fa fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="content">
+                                    <p>Yes. We provide our service completely free of charge. Our platform is for everyone to success in thier life of bussiness.
+                                    <br><br>
+                                    We focus on the impact that we can made on people than money.</p>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-head">
+                                <span>Can I use unlimited amount of Systems?</span>
+                                <span class="icon">
+                                    <i class="icon fa fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="content">
+                                    <p>Mmmm... Yep. After you done the first steps of creating a account then you will have the ability to add unlimited number of systems for your stores, libraries, shops and etc.
+                                    <br><br>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-head">
+                                <span>Can I get sales report at the end of the month?</span>
+                                <span class="icon">
+                                    <i class="icon fa fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="content">
+                                    <p>Yeah. You will have the ability to do all  those things by the dashboard and the backend panel of your billing or POS system. 
+                                    <br><br>
+                                    Getting started by making a account is the only thing that you have to do.
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-head">
+                                <span>Can I work offline with this platform?</span>
+                                <span class="icon">
+                                    <i class="icon fa fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="content">
+                                    <p>I guess you can't. We haven't intergrate offline feature completely yet for this platform. You will have to connect your device to internet every time you want to work with your billing or POS system.
+                                    <br>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-head">
+                                <span>Do I've to spend a lot on internet expenses If I use This platform Online? </span>
+                                <span class="icon">
+                                    <i class="icon fa fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="content">
+                                    <p>In short "No". You don't want to spend a lot on internet expenses If you use this platform online. We have done our best to reduce the data spend by the platform
+                                    <br><br>
+                                    About 500MB of your internet package will be sufficient to use this platform for ONE MONTH</p>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-head">
+                                <span>How can I know for sure If my Data are safe?</span>
+                                <span class="icon">
+                                    <i class="icon fa fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="content">
+                                    <p>Because of these Reasons,<br>
+                                        <ul>
+                                            <li>
+                                                All of Your data being saved on our internet servers
+                                            </li>
+                                            <li>
+                                                Your valuable information being encrypted and saved on our data bases.
+                                            </li>
+                                            <li>
+                                                We backup your data every 4 days.
+                                            </li>
+                                        </ul>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Frequently Question End ***** -->
+
+    <!-- ***** Contact Us Start ***** -->
+    <section class="section" id="contact-us">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- ***** Contact Map Start ***** -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div id="map">
+                      <!-- How to change your own map point
+                           1. Go to Google Maps
+                           2. Click on your location point
+                           3. Click "Share" and choose "Embed map" tab
+                           4. Copy only URL and paste it within the src="" field below
+                    -->
+                    <iframe src="https://maps.google.com/maps?q=nishantha%20publisher&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- ***** Contact Map End ***** -->
+
+                <!-- ***** Contact Form Start ***** -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="contact-form">
+                        <form id="contact" action="" method="post">
+                          {% csrf_token %}
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Full Name" required="" class="contact-field">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="text" id="email" placeholder="E-mail" required="" class="contact-field">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="message" rows="6" id="message" placeholder="Your Message" required="" class="contact-field"></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button" onclick="event.preventDefault();submitMessage()">Send It</button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ***** Contact Form End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us End ***** -->
+
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12">
+                    <p class="copyright">Copyright &copy; 2019 System Factory Company 
+                
+                . Team: <a rel="nofollow" href="#">TechiNuby Developers</a></p>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'home/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'home/js/popper.js' %}"></script>
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'home/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'home/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'home/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'home/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <!-- Global Init -->
+    <script src="{% static 'home/js/custom.js' %}"></script>
+
+  </body>
+</html>

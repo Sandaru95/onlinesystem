@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Online Book System | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/booksystem.css' %}" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.3/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+    <form action="{% url 'booksystem:index' pk=current_book_system.pk %}" method="POST">
+        <!-- ========================================================== -->
+        <!-- The With or Without Stock selection part ================ -->
+        <!-- ========================================================== -->
+        <select id="with-without-stock">
+            <option onclick="navigateToWithStock({{ current_book_system.pk }})">With Stock</option>
+            <option onclick="navigateToWithoutStock({{ current_book_system.pk }})">Without Stock</option>
+        </select>
+        <!-- ========================================================== -->
+        <h1 id="topic-book-system">Book Billing System <small>{{ current_book_system.name }}</small></h1>
+        <!-- ========================================================== -->
+        <!-- Start of Checkout Section ================ -->
+        <!-- ========================================================== -->
+        <section id="checkout">
+            <div id="checkout-wrapper">
+                <input type="number" id="book-id-input" placeholder="Book ID" class="add-top-left-radius" oninput="focusToQtyInput()">
+                <input type="number" id="book-qty-input" placeholder="Qty">
+                <input type="number" id="book-discount-input" placeholder="Discount" value="20">
+                <a href="#" onclick="addAItem();" id="checkout-add-btn" class="waves-effect waves-dark">Add</a>
+                <input type="text" id="subtotal-input" name='subtotal-input' placeholder="Sub Total" class="add-bottom-left-radius a-total-input">
+                <input type="text" id="total-input" name="total-input" placeholder="Total" class="add-bottom-right-radius a-total-input">
+            </div>
+        </section>
+        <!-- ========================================================== -->
+        <!-- End of Checkout Section ================ -->
+        <!-- ========================================================== -->
+        <!-- ========================================================== -->
+        <!-- ========================================================== -->
+        <!-- Start of Calculator Section ================ -->
+        <!-- ========================================================== -->
+        <section id="calculator">
+            <div class="breakup">
+                <p class='breakup-text'>Press Clear to Begin</p>
+            </div>
+            <div id="div-group">
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(1);" href="#">1</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(2);" href="#">2</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(3);" href="#">3</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(4);" href="#">4</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(5);" href="#">5</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(6);" href="#">6</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(7);" href="#">7</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(8);" href="#">8</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(9);" href="#">9</a>
+
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome('+');" href="#">+</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome(0);" href="#">0</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome('-');" href="#">-</a>
+
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome('*');" href="#">x</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="insertSome('/');" href="#">/</a>
+                <a class="waves-effect waves-dark calculator-btn" onclick="clearCalculator();" href="#">Clear</a>
+
+                <a class="waves-effect waves-dark calculator-btn calculator-sub-btn" onclick="calculate();" href="#">=</a>
+            </div>
+        </section>
+        <!-- ========================================================== -->
+        <!-- End of Calculator Section ================ -->
+        <!-- ========================================================== -->
+        <!-- ========================================================== -->
+        <!-- Start of Cart Section ================ -->
+        <!-- ========================================================== -->
+        <section id="cart"></section>
+        <!-- ========================================================== -->
+        <!-- End of Cart Section ================ -->
+        <!-- ========================================================== -->
+
+        <!-- ========================================================== -->
+        <!-- Start of Cart Section ================ -->
+        <!-- ========================================================== -->
+        <section id="more-options">
+            <a href="#" class="add-top-left-radius extended-btn waves-effect waves-dark" onclick="more_option_drawer_and_reports();">Drawer and Reports</a>
+            <a href="#" class="add-top-right-radius waves-effect waves-dark" onclick="more_option_backend();">Backend</a>
+            <a href="#" class="waves-effect waves-dark" onclick="more_option_dashboard();">Dashboard</a>
+            <a href="#" class="waves-effect waves-dark" onclick="more_option_shortcuts();" id="more-option-shortcut-btn">Shortcut</a>
+            <a href="#" class="waves-effect waves-dark" onclick="more_option_endday();">End Day</a>
+            <a href="#" class="waves-effect waves-dark" onclick="more_option_checkout();">Checkout</a>
+            <a href="#" class="waves-effect waves-dark" onclick="more_option_receipts();">Receipts</a>
+            <a href="#" class="waves-effect waves-dark" onclick="more_option_clear();">Clear</a>
+        </section>
+        <!-- ========================================================== -->
+        <!-- End of Cart Section ================ -->
+        <!-- ========================================================== -->
+
+        <!--Wave Effects -->
+        <script src="{% static 'booksystem/js/calculator.js' %}"></script>
+        <!-- Custom Javascript -->
+        <script src="{% static 'booksystem/js/booksystem.js' %}"></script>
+        <script>
+            /* The Saving point of current book system primary key */
+            let current_book_system_pk = {{ current_book_system.pk }};
+            /* =================================   */
+
+
+            // Printing the last receipt if coming from checkout
+            let codeToExecuteTemp = "{{ code_to_execute }}";
+            codeToExecuteTemp = codeToExecuteTemp.replace(/&#39;/g, "'");
+            console.log(codeToExecuteTemp);
+            let windowOpened = eval(codeToExecuteTemp);
+
+            let bookLocalDatabase = [
+                {% for book in book_list %}
+                {
+                    name:'{{ book.book_name }}', price: {{ book.book_price }}, bookId: {{ book.item_code}}, stock: {{ book.stock }}, bookPk: {{ book.pk }},
+                },
+                {% endfor %}
+            ];
+            function focusToQtyInput(){
+                setTimeout(() => {
+                    document.getElementById('book-qty-input').focus();
+                }, 1400);
+            }
+        </script>
+        <!-- Input for storage of current Data base primary key -->
+        <input type="hidden" value="{{ current_book_system.pk }}" name='current_book_system_pk'>
+        <!-- Input for LocalDataBase -->
+        <input type="hidden" name='localBookDB' id="input-local-book-db">
+        <!-- CSRF for form submission -->
+        {% csrf_token %}
+        <!-- Input for form submission -->
+        <input type="submit" style="display: none;" id="input-for-form-submission">
+    </form>
+
+    <!-- Jquery -->
+    <script src="{% static 'booksystem/js/jquery-3.4.1.js' %}"></script>
+    <!-- Key Presses -->
+    <script src="{% static 'booksystem/js/booksystem_shortcuts.js' %}"></script>
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>

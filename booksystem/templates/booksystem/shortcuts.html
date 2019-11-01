@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Shortcuts - Booksystem | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/shortcuts.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+    
+    <a href="#" class="waves-effect waves-dark" id="close-btn" onclick="closeShortcuts()">X</a>
+    <!-- ========================================================== -->
+    <!-- Start of Shortcut Section ================ -->
+    <!-- ========================================================== -->
+    <section id="shortcuts">
+        <p><span>Ctrl</span> : Next / Focus To Next / Add / Create </p>
+        <p><span>Enter</span> : Checkout / Submit / Send</p>
+        <p><span>Del</span> : Remove</p>
+        <p><span>Home</span> : Dashboard</p>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Shortcut Section ================ -->
+    <!-- ========================================================== -->
+    <!-- Jquery -->
+    <script src="{% static 'booksystem/js/jquery-3.4.1.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'booksystem/js/calculator.js' %}"></script>
+    <!-- Custom Javascript -->
+    <script src="{% static 'booksystem/js/shortcuts.js' %}"></script>
+    <script>
+        /* The Saving point of current book system primary key */
+        let current_book_system_pk = {{ current_book_system.pk }};
+        /* =================================   */
+    </script>
+    <!-- ========================================================== -->
+    <!-- End Javascript codes that need a loving -->
+    <!-- ========================================================== -->
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Online Book System | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/last_receipts.css' %}" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.3/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body onload="
+    window.print();
+    setTimeout(() => {
+        window.close();
+    }, 2000);
+">
+    <!-- User Check -->
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+
+    <h3 id="topic-book-system">{{ current_book_system.receipt_publisher_name }}</h3>
+    <!-- ========================================================== -->
+    <!-- Start of Receipts Section ================ -->
+    <!-- ========================================================== -->
+    <section id="receipts">
+        <div class="receipt-box">
+            <!-- <img src="{% static 'booksystem/images/publisher_logo.jpg' %}"> -->
+            <p>No: {{ current_book_system.receipt_publisher_address }}</p>
+            <p>Tel: 0717411527</p>
+            {% if current_book_system.receipt_date %}
+            <p id="receipt-box-date"></p>
+            {% endif %}
+            <p>Receipt</p>
+
+            <ol id="receipt-box-ol">
+            </ol>
+            <div class="receipt-box-details">
+                {% if current_book_system.receipt_no_items %}
+                {{ last_receipt.no_items }} Items<br>
+                {% endif %}
+
+                {% if current_book_system.receipt_subtotal %}
+                SubTotal: Rs.{{ last_receipt.sub_total }}<br>
+                {% endif %}
+
+                {% if current_book_system.receipt_total %}
+                Total: Rs.{{ last_receipt.total }}</div>
+                {% endif %}
+
+                <h4>{{ current_book_system.receipt_greenting_text }}</h4>
+            </div>
+            <br>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Receipts Section ================ -->
+    <!-- ========================================================== -->
+
+    <!-- Custom Javascript -->
+    <script src="{% static 'booksystem/js/receipts.js' %}"></script>
+    <script>
+        /* The Saving point of current book system primary key */
+        let current_book_system_pk = {{ current_book_system.pk }};
+        /* =================================   */
+
+        
+        /* Refer to Ordered list section */
+        let orderedList = document.getElementById('receipt-box-ol');
+        /* The Item list with Crazy @@"" */
+        let ItemsTemp = `
+            {{ last_receipt.item_decription }}
+        `
+        ItemsTemp = ItemsTemp.replace(/&#39;/g, "'");
+
+        /* The receipt local Database */
+        let itemList = eval(ItemsTemp);
+        let receiptItemListView = '';
+
+        
+        for(let item in itemList){
+            receiptItemListView += `
+                <li>${itemList[item].bookName}: ${itemList[item].qty} Books x Rs.${itemList[item].price}</li>
+            `
+        }
+        
+        orderedList.innerHTML = receiptItemListView;
+
+        /* Writing the date */
+        let receipt_box_date = document.getElementById('receipt-box-date')
+        let aDate = new Date();
+        receipt_box_date.innerText = `${aDate.getFullYear()}/${aDate.getMonth()}/${aDate.getDate()}`
+    </script>
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>

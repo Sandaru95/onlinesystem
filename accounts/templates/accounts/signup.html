@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset='UTF-8'>
+		<title>Sign Up | System Factory</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="{% static 'accounts/fonts/linearicons/style.css' %}">
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{% static 'accounts/css/login_signup_css.css' %}">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+		<script>
+			$(window).load(function() {
+				$(".se-pre-con").fadeOut("slow");;
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="se-pre-con"></div>
+		<div class="wrapper">
+			<div class="inner">
+				<img src="{% static 'accounts/images/image-1.png' %}" alt="" class="image-1">
+				<form action="{% url 'accounts:signup' %}" method="POST">
+          			{% csrf_token %}
+					<h3>New Account?</h3>
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input type="text" class="form-control" name='username' placeholder="Username">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-phone-handset"></span>
+						<input type="text" class="form-control" name='phone-number' placeholder="Phone Number">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+						<input type="text" class="form-control" name='email' placeholder="Mail">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" name='password' placeholder="Password">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" name='confirm-password' placeholder="Confirm Password">
+					</div>
+					<button type="submit">
+						<span>Sign Up</span>
+					</button>
+				</form>
+				<img src="{% static 'accounts/images/image-2.png' %}" alt="" class="image-2">
+			</div>
+			
+		</div>
+		
+		<script src="{% static 'accounts/js/jquery-3.3.1.min.js' %}"></script>
+	</body>
+</html>

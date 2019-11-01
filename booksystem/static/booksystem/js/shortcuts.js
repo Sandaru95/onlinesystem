@@ -1,0 +1,3 @@
+function closeShortcuts(){
+    window.close();
+}

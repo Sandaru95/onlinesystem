@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Receipts | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/receipts.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+    <h1 id="topic-book-system">Book Billing System | Receipts</h1>
+    <div id="button-wrap">
+        <a href="#" class="waves-effect waves-dark" id="receipt-settings" onclick="openReceiptSettings()">
+            Settings
+        </a>
+        <a href="#" class="waves-effect waves-dark" id="receipt-settings" onclick="back_to_frontend()">
+            Frontend
+        </a>
+    </div>
+    <!-- ========================================================== -->
+    <!-- Start of Receipts Section ================ -->
+    <!-- ========================================================== -->
+    <section id="receipts">
+        
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Receipts Section ================ -->
+    <!-- ========================================================== -->
+
+    <!--Wave Effects -->
+    <script src="{% static 'booksystem/js/calculator.js' %}"></script>
+    <!-- Custom Javascript -->
+    <script src="{% static 'booksystem/js/receipts.js' %}"></script>
+    <script>
+        /* The Saving point of current book system primary key */
+        let current_book_system_pk = {{ current_book_system.pk }};
+        /* =================================   */
+        
+        /* quot replaced with '' */
+        let receiptLocalDataBaseTemp = `
+            [
+                
+                {% for receipt in receipt_list %}
+                {
+                    items: {{ receipt.item_decription }},
+                    noItems: {{ receipt.no_items }},
+                    subTotal: {{ receipt.sub_total }},
+                    total: {{ receipt.total }},
+                },
+                {% endfor %}
+            ];
+        `
+        receiptLocalDataBaseTemp = receiptLocalDataBaseTemp.replace(/&#39;/g, "'");
+
+        /* The receipt local Database */
+        let receiptLocalDataBase = eval(receiptLocalDataBaseTemp);
+
+        let receiptsSection = document.getElementById('receipts');
+        let receiptsSectionView = '';
+        for(let receiptItem in receiptLocalDataBase){
+            receiptsSectionView += `<div class="receipt-box">
+                                    <h2>Nishantha Publishers</h2>
+                                    <p>Billing Receipt</p>
+                                    <ol>`
+            for(let item in receiptLocalDataBase[receiptItem].items){
+                console.log((receiptLocalDataBase[receiptItem].items)[item]);
+                receiptsSectionView += `
+                    <li>Name: ${(receiptLocalDataBase[receiptItem].items)[item].bookName} Qty: ${(receiptLocalDataBase[receiptItem].items)[item].qty} Unit Price: Rs.${(receiptLocalDataBase[receiptItem].items)[item].price}</li>
+                `
+            }
+            receiptsSectionView += `
+                </ol>
+                <div class="receipt-box-details">
+                    No Items: ${receiptLocalDataBase[receiptItem].noItems} <br>
+                    SubTotal: Rs.${receiptLocalDataBase[receiptItem].subTotal}<br>
+                    Total: Rs.${receiptLocalDataBase[receiptItem].total}</div>
+                    <h4>Thanks for your order. It's a pleasure to shop with you</h4>
+                </div>
+                <br>
+            `
+        }
+        receiptsSection.innerHTML = receiptsSectionView;
+    </script>
+    <!-- ========================================================== -->
+    <!-- End Javascript codes that need a loving -->
+    <!-- ========================================================== -->
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>

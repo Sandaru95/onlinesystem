@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Reports | System Factory</title>
+    {% load static %}
+    <!-- Custom CSS -->
+    <link href="{% static 'booksystem/css/reports.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    {% if user.signal_user_profile == current_book_system.signal_user_profile %}
+    {% csrf_token %}
+    <h1 id="topic-book-system">Book Billing System | Reports</h1>
+    <!-- ========================================================== -->
+    <!-- Start of Reports Section ================ -->
+    <!-- ========================================================== -->
+    <section id="reports-cash-info">
+        <p id="cash-info-today"> </p>
+        <p id="cash-info-overall">Total Sales : </p>
+        <p id="cash-info-drawer">Drawer Cash Amount: </p>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Reports Section ================ -->
+    <!-- ========================================================== -->
+    <!-- ========================================================== -->
+    <!-- Start of Drawer Section ================ -->
+    <!-- ========================================================== -->
+    <section id="reports-cash-in-out">
+        {% csrf_token %}
+        <input type="text" class="add-top-left-radius" placeholder="Add Amount" id="drawer-add-input">
+        <a href="#" class="waves-effect waves-dark add-top-right-radius" onclick="addCashToDrawer();">Add</a>
+        <input type="text" placeholder="Draw Amount" id="drawer-draw-input">
+        <a href="#" class="waves-effect waves-dark" onclick="drawCashFromDrawer();">Draw</a>
+        <a href="#" class="open-drawer-btn waves-effect waves-dark add-bottom-left-radius add-bottom-right-radius" onclick="drawerKick();">🔓 Drawer kick</a>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of Drawer Section ================ -->
+    <!-- ========================================================== -->
+
+    <!-- ========================================================== -->
+    <!-- Start of More Options Section ================ -->
+    <!-- ========================================================== -->
+    <section id="more-options">
+        <a href="#" class="add-top-left-radius waves-effect waves-dark" onclick="more_option_dashboard()">Dashboard</a>
+        <a href="#" class="waves-effect waves-dark" onclick="more_option_frontend()">Frontend</a>
+        <a href="#" class="add-top-right-radius waves-effect waves-dark" onclick="more_option_clear()">Clear</a>
+    </section>
+    <!-- ========================================================== -->
+    <!-- End of More Options Section ================ -->
+    <!-- ========================================================== -->
+
+    <!--Wave Effects -->
+    <script src="{% static 'booksystem/js/calculator.js' %}"></script>
+    <!-- Custom Javascript -->
+    <script src="{% static 'booksystem/js/reports.js' %}"></script>
+    <!-- Jquery -->
+    <script src="{% static 'booksystem/js/jquery-3.4.1.js' %}"></script>
+    <!-- Notification -->
+    <script src="{% static 'booksystem/js/notification.js' %}"></script>
+    <!-- ========================================================== -->
+    <!-- Javascript codes that need a loving -->
+    <!-- ========================================================== -->
+    <script>
+        /* The Saving point of current book system primary key */
+        let current_book_system_pk = {{ current_book_system.pk }};
+        /* ================================= */
+
+        /* Todays Total, Overall Total, Drawer Total */
+        let todays_total = {{current_book_system.booksystem_today_total}};
+        let overall_total = {{ current_book_system.booksystem_total }};
+        let drawer_total = {{ current_book_system.booksystem_drawer_total }};
+        updateTheCashInfoView();
+    </script>
+    <!-- ========================================================== -->
+    <!-- End Javascript codes that need a loving -->
+    <!-- ========================================================== -->
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+    {% else %}
+    <!-- ========================================== -->
+    <!-- 404 Text -->
+    <h1 id="topic-book-system">404 Page Not Found</small></h1>
+    <!-- End of 404 Text -->
+    <!-- ========================================== -->
+    {% endif %}
+</body>
+</html>
